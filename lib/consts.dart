@@ -1,0 +1,1 @@
+const String planetsBoxName = "planets_box";
