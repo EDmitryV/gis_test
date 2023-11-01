@@ -129,6 +129,7 @@ class _NewPlanetScreenState extends State<NewPlanetScreen> {
                               title: const Text('Выберите цвет планеты'),
                               content: SingleChildScrollView(
                                 child: ColorPicker(
+                                  colorPickerWidth: 200,
                                   pickerColor: pickerColor,
                                   onColorChanged: (newColor) => setState(() {
                                     pickerColor = newColor;
