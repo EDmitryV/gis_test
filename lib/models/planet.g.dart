@@ -19,7 +19,7 @@ class PlanetAdapter extends TypeAdapter<Planet> {
     return Planet(
       color: fields[1] as Color,
       remoteness: fields[2] as double,
-      speed: fields[3] as double,
+      speed: fields[3] as int,
       radius: fields[0] as double,
     );
   }

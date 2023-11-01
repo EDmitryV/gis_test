@@ -13,7 +13,7 @@ class _NewPlanetScreenState extends State<NewPlanetScreen> {
   final GlobalKey<FormState> _newPlanetFormKey = GlobalKey<FormState>();
   Color color = Colors.white;
   double? remoteness;
-  double? speed;
+  int? speed;
   double? radius;
 
   void changeColor(Color newColor) {
@@ -37,8 +37,10 @@ class _NewPlanetScreenState extends State<NewPlanetScreen> {
           key: _newPlanetFormKey,
           child: Container(
             padding: const EdgeInsets.all(16),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+            child: Wrap(
+              spacing: double.infinity,
+              runSpacing: 8,
+              alignment: WrapAlignment.center,
               children: <Widget>[
                 const Text("Параметры новой планеты"),
                 TextFormField(
@@ -48,6 +50,9 @@ class _NewPlanetScreenState extends State<NewPlanetScreen> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Поле радиуса не может быть пустым';
+                    }
+                    if(double.tryParse(value)==null){
+                      return "Радиус может быть только числом";
                     }
                     return null;
                   },
@@ -65,6 +70,9 @@ class _NewPlanetScreenState extends State<NewPlanetScreen> {
                     if (value == null || value.isEmpty) {
                       return 'Поле удаленности не может быть пустым';
                     }
+                    if(double.tryParse(value)==null){
+                      return "Удаленность может быть только числом";
+                    }
                     return null;
                   },
                   onSaved: (value) {
@@ -76,17 +84,19 @@ class _NewPlanetScreenState extends State<NewPlanetScreen> {
                 TextFormField(
                   decoration:
                       const InputDecoration(labelText: 'Скорость вращения'),
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: true),
+                  keyboardType: TextInputType.number,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Поле скорости вращения не может быть пустым';
+                    }
+                    if (int.tryParse(value) == null) {
+                      return "Скорости вращения может быть только целым числом";
                     }
                     return null;
                   },
                   onSaved: (value) {
                     if (value != null) {
-                      speed = double.parse(value);
+                      speed = int.parse(value);
                     }
                   },
                 ),

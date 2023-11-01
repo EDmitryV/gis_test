@@ -12,7 +12,7 @@ class Planet {
   @HiveField(2)
   final double remoteness;
   @HiveField(3)
-  final double speed;
+  final int speed;
 
   Planet(
       {required this.color,

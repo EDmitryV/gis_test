@@ -20,10 +20,12 @@ class _MainPageState extends State<MainPage>
   void initState() {
     if (planetsBox.length == 0) {
       planetsBox.add(
-          Planet(color: Colors.yellow, remoteness: 0, speed: 0, radius: 50));
+          Planet(color: Colors.yellow, remoteness: 0, speed: 0, radius: 100));
     }
     _animationController = AnimationController(
-        vsync: this, duration: const Duration(seconds: 5), upperBound: 2 * pi);
+        vsync: this,
+        duration: const Duration(seconds: 300),
+        upperBound: 2 * pi);
     _animationController.addListener(() {
       setState(() {});
     });
@@ -40,12 +42,11 @@ class _MainPageState extends State<MainPage>
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("Planetarium"),
       ),
-      body: InteractiveViewer(
-        child: CustomPaint(
-          painter: Painter(_animationController),
-          child: Container(),
-        ),
-      ),
+      body: 
+          CustomPaint(
+            painter: Painter(_animationController),
+            child: Container(),
+          ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).pushNamed('/add_planet').then((planet) {
